@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="cronometro.css">
+</head>
+<body>
+ <div class="wrap">
+ 	<div class="widget">
+ 	<div class="fecha">
+ 		<p> Conometro </p>
+ 	</div>
+
+ 		<div class="reloj">
+ 		<center><body onload="carga()">
+       	<p>
+		<span id="kl"></span><span id="min"></span>:<span id="seg" ></span>:<span id="mil"></span>
+	   </p>	<br>
+		<input id="iniciar" type="button" onclick="iniciar()" value="Iniciar--Reiniciar" class="iniciar" >
+		
+           </body></center>
+ 		</div>
+ 	</div>
+ </div>
+
+
+ <script type="text/javascript">
+	var cronometro;
+
+	function parar(){
+		clearInterval(cronometro);
+	}
+
+		
+		function iniciar()
+		{
+			contador_s =0;
+			contador_m =0;
+			contador_n=0;
+			contador_j=0;
+			//contador de hora=0;
+			mil = document.getElementById("mil");
+			s = document.getElementById("seg");
+			g=document.getElementById("min");
+			l=document.getElementById("kl");
+			//=document.getElementById("h");
+
+			 cronometro = setInterval(
+				function(){
+					if (contador_s==99) 
+					{
+						contador_s=0;
+						contador_m++;
+						s.innerHTML=contador_s;
+
+					if (contador_m==60) 
+						{
+							contador_m=0;
+							contador_n++;
+							if (contador_n==9) 
+						{
+							contador_n=0;
+							contador_j++;
+						}
+
+						}
+						
+						if (contador_m<10) {contador_m='0'+contador_m;}
+					
+					}
+
+
+					mil.innerHTML =contador_s;
+					s.innerHTML = contador_m;
+					g.innerHTML= contador_n;
+					l.innerHTML=contador_j;
+					contador_s++;
+
+				}
+				,8);
+				}
+	</script>
+		
+</body>
+</html>
